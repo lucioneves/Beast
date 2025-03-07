@@ -9,7 +9,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 2.7f;
     public float jumpForce = 5f;
 
+    public GameObject shotPrefab;
+    public float shotForce = 10f;
+
     bool canJump = true;
+    bool canAttack = true;
 
     SpriteRenderer sprite;
     Animator animator;
@@ -54,6 +58,8 @@ public class PlayerController : MonoBehaviour
         canJump = Mathf.Abs(body.velocity.y) <= 0.001;
 
         HandlerJumpAction();
+
+        HandlerAttack();
     }
 
     void HandlerJumpAction()
@@ -63,5 +69,35 @@ public class PlayerController : MonoBehaviour
         {
             body.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
         }
+    }
+
+    void HandlerAttack()
+    {
+        var attackPressed = inputActions.Player_Map.Attack.IsPressed();
+
+        if (canAttack && attackPressed)
+        {
+            canAttack = false;
+
+            animator.SetTrigger("t_attack");
+
+            
+        }
+    }
+
+    public void ShotNewEgg()
+    {
+        var newShot = GameObject.Instantiate(shotPrefab);
+        newShot.transform.position = transform.position;
+
+        var isLookRight = !sprite.flipX;
+        Vector2 shotDirection = shotForce * new Vector2(isLookRight ? -1 : 1, 0);
+        newShot.GetComponent<Rigidbody2D>().AddForce(shotDirection, ForceMode2D.Impulse);
+        newShot.GetComponent<SpriteRenderer>().flipY = !isLookRight;
+    }
+
+    public void SetCanAttack()
+    {
+        canAttack = true;
     }
 }

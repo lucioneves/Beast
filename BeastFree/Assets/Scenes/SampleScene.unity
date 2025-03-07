@@ -426,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 1900429401}
   serializedVersion: 2
   m_LocalRotation: {x: -0.02120412, y: 0, z: 0, w: 0.9997752}
-  m_LocalPosition: {x: -4.033, y: 0.39, z: 0}
+  m_LocalPosition: {x: -2.27, y: 0.65, z: 0}
   m_LocalScale: {x: 1.0875, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -445,7 +445,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  jumpForce: 5
+  jumpForce: 17
+  shotPrefab: {fileID: 5315639937798797660, guid: 271ade2e05fc7ac4c8acb0c102dfe23b, type: 3}
+  shotForce: 10
 --- !u!95 &1900429405
 Animator:
   serializedVersion: 5
@@ -500,7 +502,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.1, y: 0}
-  m_Size: {x: 1.12, y: 1.57}
+  m_Size: {x: 0.99, y: 1.36}
   m_Direction: 0
 --- !u!50 &1900429407
 Rigidbody2D:
@@ -517,7 +519,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
