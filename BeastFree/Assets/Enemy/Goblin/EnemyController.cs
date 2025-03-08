@@ -10,11 +10,13 @@ public class EnemyController : MonoBehaviour
 
     int currentIndex = 0;
     Animator animator;
+    SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -22,13 +24,15 @@ public class EnemyController : MonoBehaviour
     {
         if (destinations.Length == 0)
         {
-            animator.SetBool("b_isWalking", false);
+            animator.SetBool("b_isWalkin", false);
             return;
         }
 
-        animator.SetBool("b_isWalking", true);
+        animator.SetBool("b_isWalkin", true);
 
         var currentDestination = destinations[currentIndex];
+
+        sprite.flipX = currentDestination.position.x > transform.position.x;
 
         transform.position = Vector3.MoveTowards(
             transform.position,
